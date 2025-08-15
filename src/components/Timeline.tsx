@@ -10,56 +10,56 @@ function Timeline() {
   return (
     <div id="history">
       <div className="items-container">
-        <h1>Career History</h1>
+        <h1>Work</h1>
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
             contentStyle={{ background: 'white', color: 'rgb(39, 40, 34)' }}
             contentArrowStyle={{ borderRight: '7px solid  white' }}
-            date="2022 - present"
+            date="June 2025 - Present"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Technology Consultant</h3>
-            <h4 className="vertical-timeline-element-subtitle">Dallas, TX</h4>
+            <h3 className="vertical-timeline-element-title">AI Engineer - Thunder </h3>
+            <h4 className="vertical-timeline-element-subtitle">Islamabad, Pakistan</h4>
             <p>
-              Full-stack Web Development, GenAI/LLM, Project Management, Business Development
+            Generative AI, LLM's, AI Agents, RAG, CrewAI, ChatBots, Qdrant, Git, Opik, Data Engineering, Json, CDD, Pipelines 
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="2020 - 2022"
+            date="Jan 2025 - Jan 2025"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Full Stack Engineer</h3>
-            <h4 className="vertical-timeline-element-subtitle">Laie, HI</h4>
+            <h3 className="vertical-timeline-element-title">Machine Learning Engineer - Thunder </h3>
+            <h4 className="vertical-timeline-element-subtitle">Islamabad, Pakistan</h4>
             <p>
-              Frontend Development, Backend Development, User Experience, Team Leading
+            Machine Learning, TimeSeries, Postgres, Docker, Plotly, Pandas, Numpy
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="2021 - 2021"
+            date="June 2024 - August 2024"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Staff Engineer Intern</h3>
-            <h4 className="vertical-timeline-element-subtitle">Laie, HI</h4>
+            <h3 className="vertical-timeline-element-title">Infrastructure & Virtualization Engineer - Unique Systems</h3>
+            <h4 className="vertical-timeline-element-subtitle">Islamabad, Pakistan</h4>
             <p>
-              Full-stack Development, API Development, User Experience
+            OS, VM's, VMware, Server Configuration 
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="2020 - 2020"
+            date="June 2024 - August 2024"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Data Analyst Intern</h3>
-            <h4 className="vertical-timeline-element-subtitle">Tokyo, Japan</h4>
+            <h3 className="vertical-timeline-element-title">Junior Software Engineer Intern - Heavy Mechanical Complex (HMC)</h3>
+            <h4 className="vertical-timeline-element-subtitle">Taxila, Pakistan</h4>
             <p>
-              Automation, Data Governance, Statistical Analysis
+            Machine Learning, Java, Data Structure 
             </p>
           </VerticalTimelineElement>
         </VerticalTimeline>
