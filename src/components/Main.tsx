@@ -13,10 +13,6 @@ function Main() {
           <img src={me1} alt="Avatar" />
         </div>
         <div className="content">
-          <div className="social_icons">
-            <a href="https://github.com/hassnain08" target="_blank" rel="noreferrer"><GitHubIcon/></a>
-            <a href="https://www.linkedin.com/in/syedhassnainabbas/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
-          </div>
           <h1>Syed Hassnain Abbas</h1>
           <p>FAST - 5th Semester.</p>
 

@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
 
 function Contact() {
-
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
@@ -16,37 +16,71 @@ function Contact() {
   const [emailError, setEmailError] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
 
-  const form = useRef();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
+    setSuccessMessage(null);
+    setErrorMessage(null);
 
-    /* Uncomment below if you want to enable the emailJS */
+    const isNameValid = name.trim() !== '';
+    const isEmailValid = email.trim() !== '';
+    const isMessageValid = message.trim() !== '';
 
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
+    setNameError(!isNameValid);
+    setEmailError(!isEmailValid);
+    setMessageError(!isMessageValid);
 
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+    if (isNameValid && isEmailValid && isMessageValid) {
+      // Prepare template parameters for your notification email
+      const notificationParams = {
+        user_name: name,
+        user_email: email, // This is where you'll receive their email
+        message: message,
+      };
+
+      // Prepare template parameters for the autoresponder email
+      const autoresponderParams = {
+        user_name: name, // This will be used in the greeting
+        user_email: email, // This is where the auto-reply will be sent TO
+        message: message, // This will be included in the auto-reply
+      };
+
+      // Replace these with your actual EmailJS credentials
+      const serviceId = 'service_wf1yai2'; // Same service for both emails
+      const notificationTemplateId = 'template_elixulb'; // Your original template ID
+      const autoresponderTemplateId = 'template_hjqsk26'; // The new autoresponder template ID
+      const publicKey = 'YOUR_PUBLIC_KEY_HLAAUaQY-b-BPSAm9QERE'; // Same public key
+
+      // Send the notification email to you
+      emailjs.send(serviceId, notificationTemplateId, notificationParams, publicKey)
+        .then(
+          (response) => {
+            console.log('NOTIFICATION SENT TO YOU!', response.status, response.text);
+
+            // Send the autoresponder email back to the user
+            emailjs.send(serviceId, autoresponderTemplateId, autoresponderParams, publicKey)
+              .then(
+                (autoResponse) => {
+                  console.log('AUTORESPONDER SENT TO USER!', autoResponse.status, autoResponse.text);
+                  setSuccessMessage('Your message has been sent successfully! A confirmation has been sent to your email.');
+                },
+                (autoError) => {
+                  console.log('AUTORESPONDER FAILED...', autoError);
+                  // Even if autoresponder fails, still show success for the main message
+                  setSuccessMessage('Your message has been sent successfully! I will respond to you soon.');
+                }
+              );
+
+          },
+          (error) => {
+            console.log('NOTIFICATION FAILED...', error);
+            setErrorMessage('Failed to send your message. Please try again later.');
+          },
+        );
+    }
   };
 
   return (
@@ -54,43 +88,51 @@ function Contact() {
       <div className="items-container">
         <div className="contact_wrapper">
           <h1>Contact Me</h1>
-          <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
+          {successMessage && <Alert severity="success">{successMessage}</Alert>}
+          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+
           <Box
-            ref={form}
             component="form"
             noValidate
             autoComplete="off"
             className='contact-form'
+            onSubmit={sendEmail}
           >
             <div className='form-flex'>
               <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-name"
                 label="Your Name"
                 placeholder="What's your name?"
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
+                  if (nameError) setNameError(false);
                 }}
                 error={nameError}
                 helperText={nameError ? "Please enter your name" : ""}
+                fullWidth
+                variant="outlined"
               />
               <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-email"
                 label="Email / Phone"
                 placeholder="How can I reach you?"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
+                  if (emailError) setEmailError(false);
                 }}
                 error={emailError}
                 helperText={emailError ? "Please enter your email or phone number" : ""}
+                fullWidth
+                variant="outlined"
               />
             </div>
             <TextField
               required
-              id="outlined-multiline-static"
+              id="outlined-multiline-static-message"
               label="Message"
               placeholder="Send me any inquiries or questions"
               multiline
@@ -99,13 +141,23 @@ function Contact() {
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
+                if (messageError) setMessageError(false);
               }}
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
+              fullWidth
+              variant="outlined"
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
-              Send
-            </Button>
+            <Box textAlign="center" mt={2}>
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                type="submit"
+                size="large"
+              >
+                Send Message
+              </Button>
+            </Box>
           </Box>
         </div>
       </div>

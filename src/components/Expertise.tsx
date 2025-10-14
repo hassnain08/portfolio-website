@@ -6,42 +6,61 @@ import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
-    "C++",
-    "C",
-    "Java",
-    "HTML",
-    "CSS",
-    "Assembly",
-    "SQL",
-    "MongoDB",
-    "PHP",
-    "Linux",
-    "Git",
-    "Python",
-    "Flask",
-
+    "Machine Learning",
+    "Data Engineering",
+    "Generative AI",
+    "Data Visualization"
 ];
 
 const labelsSecond = [
-    "Docker",
-    "Postman",
-    "PostgreSQL",
+    "Langchain",
+    "CrewAI",
+    "MCP",
+    "Time Series",
+    "Pipelines",
+    "RAG",
     "Numpy",
     "Pandas",
     "Selenium",
     "Plotly",
-    "Qdrant",
     "Opik",
-    "CrewAI",
-    "ChatBots",
-    "RAG",
-    "CDD",
-    "Pipelines",
-    "CI/CD",
+    "PowerBI",
+    "Scikit-learn",
+    "Matplotlib",
+    "Seaborn",
+    "HuggingFace",
+    "BeautifulSoup",
+    "Linux",
 ];
 
 const labelsThird = [
-    "test",
+    "C++",
+    "Python",
+    "JavaScript",
+    "Java",
+    "SQL",
+];
+
+const labelsFourth = [
+    "FastAPI",
+    "Flask",
+    "MongoDB",
+    "PostgreSQL",
+    "MySQL",
+    "SQLite",
+    "Firebase",
+    "Docker",
+    "Git",
+    "GitHub",
+    "Qdrant",
+    "Pinecone",
+];
+
+const labelsFifth = [
+    "Streamlit",
+    "HTML",
+    "CSS",
+    "JavaScript"
 ];
 
 function Expertise() {
@@ -52,10 +71,9 @@ function Expertise() {
             <div className="skills-grid">
                 <div className="skill">
                     <FontAwesomeIcon icon={faReact} size="3x"/>
-                    <h3>Skill Stack</h3>
+                    <h3>Expertise</h3>
                     <p></p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
                         {labelsFirst.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
@@ -63,8 +81,7 @@ function Expertise() {
                 </div>
 
                 <div className="skill">
-                    <FontAwesomeIcon icon={faDocker} size="3x"/>
-                    <h3>DevOps & Automation</h3>
+                    <h3>Frameworks</h3>
                     <p></p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
@@ -75,7 +92,6 @@ function Expertise() {
                 </div>
 
                 <div className="skill">
-                    <FontAwesomeIcon icon={faPython} size="3x"/>
                     <h3>GenAI & LLM</h3>
                     <p></p>
                     <div className="flex-chips">
@@ -85,6 +101,27 @@ function Expertise() {
                         ))}
                     </div>
                 </div>
+
+                <div className="skill">
+                    <h3>Backend</h3>
+                    <p></p>
+                    <div className="flex-chips">
+                        {labelsFourth.map((label, index) => (
+                            <Chip key={index} className='chip' label={label} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="skill">
+                    <h3>Frontend</h3>
+                    <p></p>
+                    <div className="flex-chips">
+                        {labelsFifth.map((label, index) => (
+                            <Chip key={index} className='chip' label={label} />
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
