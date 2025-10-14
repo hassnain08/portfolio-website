@@ -52,7 +52,7 @@ function Contact() {
       const serviceId = 'service_wf1yai2'; // Same service for both emails
       const notificationTemplateId = 'template_elixulb'; // Your original template ID
       const autoresponderTemplateId = 'template_hjqsk26'; // The new autoresponder template ID
-      const publicKey = 'YOUR_PUBLIC_KEY_HLAAUaQY-b-BPSAm9QERE'; // Same public key
+      const publicKey = 'LAAUaQY-b-BPSAm9QERE'; // Same public key
 
       // Send the notification email to you
       emailjs.send(serviceId, notificationTemplateId, notificationParams, publicKey)
