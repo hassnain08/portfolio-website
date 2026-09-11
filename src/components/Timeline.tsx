@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import Reveal from "./Reveal";
@@ -83,6 +84,12 @@ const entries: Entry[] = [
 ];
 
 function Timeline() {
+  const railRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: railRef,
+    offset: ["start center", "end center"],
+  });
+
   return (
     <section id="history" className="py-20 md:py-28">
       <div className="container mx-auto max-w-4xl px-6">
@@ -93,7 +100,12 @@ function Timeline() {
           <h2 className="mb-12 text-3xl font-bold md:text-4xl">Work &amp; Education</h2>
         </Reveal>
 
-        <div className="relative border-l-2 border-border pl-8">
+        <div ref={railRef} className="relative pl-8">
+          <div className="absolute inset-y-0 left-0 w-px bg-border" />
+          <motion.div
+            className="absolute left-0 top-0 w-px origin-top bg-primary"
+            style={{ scaleY: scrollYProgress, height: "100%" }}
+          />
           {entries.map((entry, i) => (
             <Reveal key={entry.title + entry.date} delay={i * 0.05} className="relative mb-10 last:mb-0">
               <span className="absolute -left-[2.35rem] flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md shadow-primary/40">

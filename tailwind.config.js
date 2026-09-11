@@ -43,9 +43,14 @@ module.exports = {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "200% 50%" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.6s ease-out both",
+        shimmer: "shimmer 4s linear infinite",
       },
     },
   },

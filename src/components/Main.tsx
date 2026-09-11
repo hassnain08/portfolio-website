@@ -4,6 +4,8 @@ import { GithubIcon, LinkedinIcon } from "./icons";
 import { buttonVariants } from "./ui/button";
 import { cn } from "lib/utils";
 import Reveal from "./Reveal";
+import HeroBackground from "./HeroBackground";
+import GradientText from "./ui/gradient-text";
 import me1 from "../assets/images/me.jpg";
 
 const CV_PATH = `${process.env.PUBLIC_URL}/Syed-Hassnain-Abbas-CV.pdf`;
@@ -14,10 +16,7 @@ function Main() {
       id="home"
       className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-40 -top-40 h-[36rem] w-[36rem] rounded-full bg-gradient-to-br from-primary/30 to-accent/10 blur-3xl"
-      />
+      <HeroBackground />
 
       <div className="container relative mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 md:flex-row md:gap-16">
         <Reveal className="flex-1 text-center md:text-left">
@@ -25,7 +24,7 @@ function Main() {
             Software Engineer &middot; AI &amp; Data Systems
           </p>
           <h1 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-            Syed Hassnain Abbas
+            <GradientText>Syed Hassnain Abbas</GradientText>
           </h1>
           <p className="mt-3 text-lg font-semibold text-foreground/90 md:text-xl">
             Software Engineer @ Thunder Energy Intelligence Platform &middot; Co-founder @ TACSIGHT
