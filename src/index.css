@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+
+:root {
+  /* Dark mode (default) */
+  --background: 210 15% 6%;
+  --foreground: 0 0% 100%;
+  --muted: 210 10% 14%;
+  --muted-foreground: 220 9% 65%;
+  --card: 210 12% 10%;
+  --card-foreground: 0 0% 100%;
+  --border: 210 10% 20%;
+  --primary: 271 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 261 83% 42%;
+  --accent-foreground: 0 0% 100%;
+  --ring: 271 100% 60%;
+}
+
+.light-mode {
+  --background: 210 20% 98%;
+  --foreground: 210 15% 8%;
+  --muted: 210 16% 93%;
+  --muted-foreground: 210 8% 40%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 15% 8%;
+  --border: 210 15% 88%;
+  --primary: 271 100% 40%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 261 83% 42%;
+  --accent-foreground: 0 0% 100%;
+  --ring: 271 100% 45%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0d;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* .main-container (in App.tsx) carries the .dark-mode/.light-mode class that
+   scopes the CSS variables above, so it - not body - must own the page
+   background/text color; body is an ANCESTOR of that class and custom
+   properties don't inherit upward. */
+.main-container {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.35);
+}
